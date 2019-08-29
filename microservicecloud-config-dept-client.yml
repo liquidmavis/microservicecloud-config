@@ -40,3 +40,44 @@ info:
   company.name: www.liquid.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
+  
+  
+  
+---
+server:
+  port: 8001
+
+mybatis:
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: com.liquid.entities
+  config-location: classpath:mybatis/mybatis-config.xml
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/cloudDB02
+    username: root
+    password: sa
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+    driver-class-name: org.gjt.mm.mysql.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: microservicecloud-dept8002
+
+info:
+  app.name: liquid-microservicecloud
+  company.name: www.liquid.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
